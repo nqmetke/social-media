@@ -1,3 +1,6 @@
 .hide{
   display:none;
 }
+.login-container{
+  border: 1px solid black;
+}
