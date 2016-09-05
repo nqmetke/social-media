@@ -7,7 +7,7 @@ console.log("Testing");
     storageBucket: "social-media-project-b5633.appspot.com",
   };
   firebase.initializeApp(config);
-
+  var provider = new firebase.auth.GoogleAuthProvider();
   const emailLogin = document.getElementById('email-login');
   const password_login = document.getElementById('password-login') ;
   const email = document.getElementById('email');
@@ -19,6 +19,7 @@ console.log("Testing");
   const loginBtn = document.getElementById('login');
   const signupBtn = document.getElementById('signup');
   const logout = document.getElementById('logout');
+  const googleSignUp = document.getElementById('googleSignUp');
 
 
   loginBtn.addEventListener('click', e => {
@@ -46,6 +47,9 @@ console.log("Testing");
 });
 logout.addEventListener('click', e => {
   firebase.auth().signOut();
+});
+googleSignUp.addEventListener('click', e=>{
+  firebase.auth().signInWithRedirect(provider);
 });
 
 firebase.auth().onAuthStateChanged(firebaseUser =>{
