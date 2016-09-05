@@ -19,6 +19,6 @@ app.get('/login', function(req,res){
 app.get('/home', function(req, res){
   res.render('home');
 });
-app.listen(8080, function(){
+app.listen(process.env.PORT  || 8080, function(){
   console.log("Server listening on port 8080!");
-});
+})
