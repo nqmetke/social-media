@@ -2,7 +2,8 @@
 
 var express = require('express'),
 partials = require('express-partials'),
-app = express();
+app = express(),
+http = require('http')
 
 app.set('view engine', 'ejs');
 app.set('views', './views');
@@ -20,4 +21,4 @@ app.get('/home', function(req, res){
 });
 app.listen(8080, function(){
   console.log("Server listening on port 8080!");
-}).listen(process.env.PORT);
+});
