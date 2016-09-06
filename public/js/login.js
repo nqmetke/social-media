@@ -13,13 +13,22 @@ console.log("Testing");
   const email = document.getElementById('email');
   const password = document.getElementById('password');
   const check_password = document.getElementById('check-password');
-  /*const first_name = document.getElementById('first-name');
-  const last_name = document.getElementById('last-name');*/
+  const first_name = document.getElementById('first-name');
+  const last_name = document.getElementById('last-name');
 
   const loginBtn = document.getElementById('login');
   const signupBtn = document.getElementById('signup');
   const logout = document.getElementById('logout');
   const googleSignUp = document.getElementById('googleSignUp');
+  const dbRefObject = firebase.database().ref().child('object');
+  const dbRefObject2 = firebase.database().ref().child('users');
+  function writeUserData(userId, name, email, imageUrl) {
+    dbRefObject2.child(email).set({
+      uid: userId,
+      email: email,
+      name: name
+    });
+  }
 
 
   loginBtn.addEventListener('click', e => {
@@ -54,10 +63,13 @@ googleSignUp.addEventListener('click', e=>{
 
 firebase.auth().onAuthStateChanged(firebaseUser =>{
   if(firebaseUser){
-    console.log(firebaseUser);
-    logout.classList.remove('hide');
+    writeUserData(firebaseUser.uid, firebaseUser.displayName, firebaseUser.email, firebaseUser.imageUrl);
+
+    window.location = '/home'
+    //console.log(firebaseUser);
+    //logout.classList.remove('hide');
 }else{
   console.log("Not logged in");
-  logout.classList.add('hide');
+
 }
 });
